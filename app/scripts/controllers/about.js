@@ -1,3 +1,4 @@
+/// <reference path='../../../bower_components/DefinitelyTyped/angularjs/angular.d.ts' />
 'use strict';
 /**
  * @ngdoc function
