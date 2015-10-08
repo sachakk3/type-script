@@ -7,6 +7,32 @@ module.exports = function(config) {
   'use strict';
 
   config.set({
+     
+    preprocessors: {
+      '**/*.ts': ['typescript']
+    },
+    
+    typescriptPreprocessor: {
+      // options passed to the typescript compiler 
+      options: {
+        sourceMap: false, // (optional) Generates corresponding .map file. 
+        target: 'ES5', // (optional) Specify ECMAScript target version: 'ES3' (default), or 'ES5' 
+        module: 'amd', // (optional) Specify module code generation: 'commonjs' or 'amd' 
+        noImplicitAny: true, // (optional) Warn on expressions and declarations with an implied 'any' type. 
+        //noResolve: true, // (optional) Skip resolution and preprocessing. 
+        removeComments: true, // (optional) Do not emit comments to output. 
+        concatinateOutput: false // (optional) Concatenate and emit output to single file. By default true if module option is omited, otherwise false. 
+      },
+      // extra typing definitions to pass to the compiler (globs allowed) 
+      typings: [
+        'typings/tsd.d.ts'
+      ],
+      // transforming the filenames 
+      transformPath: function(path) {
+        return path.replace(/\.ts$/, '.js');
+      }
+    },
+    
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
@@ -33,7 +59,7 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      'app/scripts/*.ts',
+      //'app/scripts/*.ts',
       'app/scripts/**/*.ts',
       'test/spec/**/*.ts'  
     ],
@@ -59,8 +85,10 @@ module.exports = function(config) {
 
     // Which plugins to enable
     plugins: [
+      "karma-chrome-launcher",
       "karma-phantomjs-launcher",
-      "karma-jasmine"
+      "karma-jasmine",
+      "karma-typescript-preprocessor"
     ],
 
     // Continuous Integration mode

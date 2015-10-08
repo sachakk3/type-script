@@ -1,3 +1,4 @@
+/// <reference path='../../../bower_components/DefinitelyTyped/angularjs/angular.d.ts' />
 'use strict';
 
 /**
@@ -10,8 +11,11 @@
 angular.module('firstappApp')
   .controller('MainCtrl', function () {
     this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+      'HTML5 Boilerplate 1',
+      'AngularJS 1',
+      'Karma 1'
     ];
-  });
+    this.GetMessage = function(){
+      window.alert("TestClick");
+    };    
+  });  
